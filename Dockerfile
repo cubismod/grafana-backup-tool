@@ -2,8 +2,8 @@ FROM alpine:latest
 
 LABEL maintainer="ysde108@gmail.com"
 
-ENV RESTORE false
-ENV ARCHIVE_FILE ""
+ENV RESTORE=false
+ENV ARCHIVE_FILE=""
 
 ARG BACKUP_BIN=/opt/grafana-backup-tool/venv/bin/grafana-backup
 
