@@ -16,6 +16,4 @@ RUN chmod -R a+r /opt/grafana-backup-tool \
 
 RUN virtualenv -p $(which python3) venv && ./venv/bin/pip3 --no-cache-dir install .
 
-RUN chown -R 1337:1337 /opt/grafana-backup-tool
-USER 1337
 CMD sh -c 'export BACKUP_BIN=/opt/grafana-backup-tool/venv/bin/grafana-backup; if [ "$RESTORE" = true ]; then if [ ! -z "$AWS_S3_BUCKET_NAME" ] || [ ! -z "$AZURE_STORAGE_CONTAINER_NAME" ] || [ ! -z "$GCS_BUCKET_NAME" ]; then $BACKUP_BIN restore $ARCHIVE_FILE; else $BACKUP_BIN restore _OUTPUT_/$ARCHIVE_FILE; fi else $BACKUP_BIN save; fi'
